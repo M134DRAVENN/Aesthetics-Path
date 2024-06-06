@@ -2,7 +2,7 @@
 Les pages et leur fonctionnalité :<br>
 - Accueil : Page de bienvenue présentant 3 exercices et un bouton renvoyant vers la page des exercices (recherche vide). Elle est accessible depuis l'icon de colisée dans l'en-tête ou le lien "accueil" dans le pied de page.<br>
 - S'inscrire : Page d'inscription basique, disponible depuis le lien "s'inscrire" dans l'en-tête.<br>
-- Se connecter : Page de connexion basique, disponible depuis le lien "se connecter" dans l'en-tête, avec la fonctionnalité "mot de passe oublié".<br><br>
+- Se connecter : Page de connexion basique, disponible depuis le lien "se connecter" dans l'en-tête, avec la fonctionnalité "mot de passe oublié".<br>
 - Se déconnecter : Lien dans l'en-tête qui permet de se déconnecter de son compte
 - Exercices : Page listant tous les exercices du site disponible depuis le lien "exercices" dans l'en-tête. Sur chaque bannière présentant un exercice, il y a le bouton "voir plus" qui redirige vers la page "exercice-fiche".<br>
 - Exercice-fiche : Page offrant plus de détails sur l'exercice en question.<br>

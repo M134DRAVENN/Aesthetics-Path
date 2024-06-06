@@ -12,6 +12,7 @@ Les pages et leur fonctionnalité :<br>
 - AddSeance : Page d'ajout de séance pour la page planning.<br>
 - Seance : Page accessible depuis le lien sur le nom de la séance sur la page planning. Cette page comporte un tableau vide que l'utilisateur pourra remplir avec le nom de l'exercice (parmis ceux présents sur le site), un nombre de séries, un nombre de reps, un nombre de charge (kg) et un nombre de temps de repos (secondes). La ligne peut être supprimée.<br>
 - AddExerciceSeance : Page d'ajout de ligne pour la page séance. L'utilisateur aura un nombre de case spécifique à celui rentré dans l'emplacement "nombre de séries".<br><br>
+
 Pages accessibles seulement en administrateur :<br>
 - Exercice : Liste des exercices apparaissant dans la recherche et dans la page Exercices. L'administrateur peut ajouter des exercices, les modifier ou les supprimer.<br>
 - exerciceModif : Formulaire de modification d'exercice.<br>

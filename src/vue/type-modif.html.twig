@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+
+{% if form.type is defined %}
+   {% if form.type != null %}
+      <form class="form-signin" action="index.php?page=typeModif" method="post" enctype="application/x-www-form-urlencoded">
+         <div class="form-group">
+            <label for="inputLibelle" class="sr-only">Libelle:</label>
+            <input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Modifier le libelle" value="{{form.type.libelle}}">
+         </div>
+         <div class="form-group">
+            <select class="form-control" name="role">
+            {% for r in form.roles %}
+               {% if r.id==form.type.idRole %}
+                  <option value="{{ r.id }}" selected>{{ r.libelle }}</option>
+               {% else %}
+                  <option value="{{ r.id }}">{{ r.libelle }}</option>
+               {% endif %}
+            {% endfor %}
+            </select>
+         </div>
+         <div class="form-group">
+            <input type="hidden" name="id" value="{{ form.type.id}}"/>
+            <button class="btn btn-lg btn-block" type="submit" name="btModifier">Modifier</button>
+            </div>
+         </form>
+   {% else %}
+      <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+      <a href="index.php?page=Type">Retourner sur la liste des types</a>
+   {% endif %}
+{% else %}
+   {% if form.valide == true %}
+       <h2 class="h3 mb-3 font-weight-normal">{{ form.message }} </h2>
+       <h2 class="h3 mb-3 font-weight-normal"><a href="index.php?page=Type">Retourner sur la liste des types</a></h2>
+   {% else %}
+       <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+       <h2 class="h3 mb-3 font-weight-normal"><a href="index.php?page=Type">Retourner sur la liste des types</a></h2>
+   {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %} 
+
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">Bienvenue sur Aesthetics Path</h1>
+            <p class="lead">Votre outil de planification de séance en ligne !</p>
+            <hr class="my-4">
+            <p>Explorez notre catalogue et trouvez les exercices qui vous conviennent.</p>
+            <a class="btn btn-lg" href="index.php?page=recherche&recherche=" role="button">Voir les exercices</a>
+        </div>
+
+        <div class="row accueil-row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="images/665bbb2fe470c.jpg" class="card-img-top" alt="Exercice 1">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style = "display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2; text-overflow: ellipsis;">Pull-over</h5>
+                        <p class="card-text" style = "display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2; text-overflow: ellipsis;">Le pull-over est un exercice travaillant le dos, le grand dorsal plus précisément. Pour une bonne exécution, laisser un espace entre le banc et votre bas du dos en faisant un arc de cercle, comme pour le développé couché. Les pieds bien ancrés dans le sol et les abdos contractés, baissez l'haltère jusqu'à étirement complet du bas du dos. Ralentissez sur la phase d'étirement pour bien sentir la contraction du dos et ne pas faire intervenir d'autres muscles comme les pectoraux.</p>
+                        <a href="index.php?page=exercicefiche&id=27" class="btn">Voir l'exercice</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="images/665b7990b2455.jpg" class="card-img-top" alt="Exercice 2">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style = "display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2; text-overflow: ellipsis;">Curl pupitre</h5>
+                        <p class="card-text" style = "display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2; text-overflow: ellipsis;">En raison de l'angle du pupitre, entre 45° et 60°, les bras sont placés devant le corps, ce qui permet un meilleur ciblage de la courte portion du biceps. L'exercice est réalisable avec une barre droite, une barre EZ ou avec des haltères. Pour une bonne exécution, optez pour une charge contrôlable et abaissez lentement l'haltère en contrôlant le mouvement, jusqu'à ce que vos bras soient complètement étendus. Vos aisselles doivent reposer sur le haut du pupitre. Effectuez le mouvement de manière lente et contrôlée pour maximiser l'engagement musculaire et éviter les blessures.</p>
+                        <a href="index.php?page=exercicefiche&id=24" class="btn">Voir l'exercice</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="images/665bb8a69e492.jpg" class="card-img-top" alt="Exercice 3">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style = "display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2; text-overflow: ellipsis;">Rowing haltère</h5>
+                        <p class="card-text" style = "display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2; text-overflow: ellipsis;">Le rowing haltère est un exercice qui va cibler le dos et mette l'accent sur le grand dorsal, la partie basse. Afin d'avoir une bonne forme d'exécution, regardez vers le sol pour garder le dos bien droit, descendez l'omoplate du bras qui est en train de travailler lors de la phase excentrique, relevez la lors de la phase concentrique et concentrez vous sur le fait d'envoyer le coude le plus en arrière possible tout en le gardant près du buste. Si votre objectif est de cibler le haut du dos, une variante existe. Celle-ci consiste à prendre l'haltère avec une prise en pronation et à envoyer le coude vers le côté avec un angle d'un peu moins de 90°.</p>
+                        <a href="index.php?page=exercicefiche&id=26" class="btn">Voir l'exercice</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

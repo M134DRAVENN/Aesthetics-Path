@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+
+{% if form.valideAjout is defined %}
+ {% if form.valideAjout == true %}
+ <h3 class="text-success">{{ form.message }}</h2>
+ {% else %}
+ <h3 class="text-danger">{{ form.message }}</h2>
+ {% endif %}
+{% endif %}
+
+{% if form.exercice is defined %}
+<div class="container">
+        <h2 class="titre">{{ form.exercice.designation }}</h2>
+
+    <div class="row">
+            {% if form.exercice.photo is not empty %}
+                <div class="img-container">
+                    <img src="images/{{ form.exercice.photo }}" alt="{{ form.exercice.designation }}" class="img-fluid">
+                </div>
+            {% else %}
+                <div class="img-container">
+                    <img src="images/defaut" class="img-fluid">
+                </div>
+            {% endif %}
+        <div class="col-md-6">
+            <div class="">Description :
+                <p>{{ form.exercice.description }}</p>
+                <p>Type: {{ form.exercice.type }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% else %}
+<div class="alert alert-danger" role="alert">
+    L'exercice demandé n'existe pas !
+</div>
+{% endif %}
+
+<style>
+
+.titre {
+    margin-left: 80px;
+}
+
+.img-fluid {
+    width: 100%;
+}
+
+.img-container {
+    width: 500px;
+    height: 500px;
+}
+
+</style>
+{% endblock %}

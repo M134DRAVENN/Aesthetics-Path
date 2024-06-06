@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }}{% endblock %}
+{% block contenu %}
+
+{% if form.etat is defined %}
+    {% if form.etat == true %}
+        <h2 class="h3 mb-3 font-weight-normal">Suppression reussie</h2>
+    {% else %}
+        <h2 class="alert alert-danger" role="alert">Probleme d'insertion</h2>
+    {% endif %}
+{% endif %}
+
+{% if seanceDetails is defined and seanceDetails.details | length > 0 %}
+    <form class="form-signin" action="index.php?page=Seance&id={{ seanceDetails.seance.id }}" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="table-responsive">
+            <table class="table seancetable">
+                <thead>
+                    <tr>
+                        <th scope="col" class="name">Exercice</th>
+                        {% for i in 1..maxSets %}
+                            <th scope="col">Reps n°{{ i }}</th>
+                            <th scope="col">Charge n°{{ i }}</th>
+                            <th scope="col">Temps n°{{ i }}</th>
+                        {% endfor %}
+                        <th scope="col"><button class="btn btn-lg btn-block" type="submit" name="btSupprimer">Suppr</button>
+                    </tr>
+                </tead>
+                <tbody>
+                    {% for detail in seanceDetails.details %}
+                        <tr>
+                            <td>{{ detail.designation }}</td>
+                                {% for i in 1..maxSets %}
+                                <td>x{{ detail.reps[i-1].reps }}</td>
+                                <td>{{ detail.reps[i-1].weight }}kg</td>
+                                <td>{{ detail.reps[i-1].rest_time }}s</td>
+                                {% endfor %}
+                            <td class="case"><input type="checkbox" name="cocher[]" id="cocher[]" value="{{ detail.id }}" /></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a id="ajt" href="index.php?page=AddExerciceSeance&seance_id={{ seanceDetails.seance.id }}"><button type="button" class="btn btn-lg btn-block">Ajouter</button></a>
+    </form>
+{% else %}
+    <h2 class="text-center">Votre séance est vide.</h2>
+    <p>Pour y ajouter des exercices, cliquez sur le bouton ci-dessous.</p>
+    <a id="ajt" href="index.php?page=AddExerciceSeance&seance_id={{ seanceDetails.seance.id }}"><button type="button" class="btn btn-lg btn-block">Ajouter un exercice</button></a>
+{% endif %}
+{% endblock %}

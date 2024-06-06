@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+<h2>Modifier un exercice</h2>
+
+{% if form.exercice is defined %}
+ {% if form.exercice != null %}
+
+ <form class="form-signin" action="index.php?page=exerciceModif" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="form-group">
+            <label for="inputDesignation">Nom de l'exercice :</label>
+            <input type="text" class="form-control" id="nom" name="inputDesignation" placeholder="Modifiez le nom du exercice" required value="{{form.exercice.designation}}">
+        </div>
+        <div class="form-group">
+            <label for="inputDescription">Description :</label>
+            <textarea class="form-control" id="description" name="inputDescription" placeholder="Modifiez la description du exercice" rows="4" required>{{form.exercice.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="inputLibelle">Type :</label>
+            <input type="number" class="form-control" id="inputLibelle" name="inputLibelle" placeholder="Modifiez le type de exercice" required value="{{form.exercice.idType}}">
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo :</label>
+            <input type="file" name="photo" id="photo" class="form-control">
+        </div><br>
+        <div class="img-container">
+            {% if form.exercice.photo is not empty %}
+                <img src="images/{{form.exercice.photo}}" class="prod-modif-img">
+            {% else %}
+                <img src="images/defaut" class="prod-modif-img">
+            {% endif %}
+        </div>
+<input type="hidden" name="id" value="{{form.exercice.id}}"/>
+
+<button class="btn btn-lg btn-block" type="submit" name="btModifier">Modifier</button>
+
+
+{% else %}
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+    <a href="index.php?page=Exercice">Retourner sur la liste des exercices</a>
+    {% endif %}
+{% else %}
+    {% if form.valide == true %}
+    <h2 class="h3 mb-3 font-weight-normal">{{ form.message }} </h2>
+    <h2 class="h3 mb-3 font-weight-normal"><a href="index.php?page=Exercice">Retourner sur la liste des exercices</a></h2>
+    {% else %}
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+    <h2 class="h3 mb-3 font-weight-normal"><a href="index.php?page=Exercice">Retourner sur la liste des exercices</a></h2>
+    {% endif %}
+{% endif %}
+
+<style>
+
+.img-container {
+    margin-left: 350px;
+    width: 400px;
+    height: 400px;
+}
+
+.prod-modif-img {
+    width: 100%;
+}
+
+</style>
+{% endblock %}

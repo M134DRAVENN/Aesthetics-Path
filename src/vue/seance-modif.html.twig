@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }}{% endblock %}
+{% block contenu %}
+<h2>Modifier une séance</h2>
+
+{% if form.seance is defined %}
+ {% if form.seance != null %}
+
+ <form class="form-signin" action="index.php?page=seanceModif" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="form-group">
+            <label for="inputName">Titre :</label>
+            <input type="text" id="inputName" name="inputName" class="form-control" placeholder="Dos - Biceps, ..." value="{{form.seance.name}}" required autofocus>
+        </div>
+<input type="hidden" name="id" value="{{form.seance.id}}"/>
+
+<button class="btn btn-lg btn-block" type="submit" name="btModifier">Modifier</button>
+
+
+{% else %}
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+    <a href="index.php?page=planning">Retourner sur la liste des seances</a>
+    {% endif %}
+{% else %}
+    {% if form.valide == true %}
+    <h2 class="h3 mb-3 font-weight-normal">{{ form.message }} </h2>
+    <h2 class="h3 mb-3 font-weight-normal"><a href="index.php?page=planning">Retourner sur la liste des seances</a></h2>
+    {% else %}
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+    <h2 class="h3 mb-3 font-weight-normal"><a href="index.php?page=planning">Retourner sur la liste des seances</a></h2>
+    {% endif %}
+{% endif %}
+
+<style>
+
+.img-container {
+    margin-left: 350px;
+    width: 400px;
+    height: 400px;
+}
+
+.prod-modif-img {
+    width: 100%;
+}
+
+</style>
+{% endblock %}

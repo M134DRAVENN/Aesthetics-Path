@@ -1,0 +1,105 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+    <form class="form-signin" action="index.php?page=ExerciceSeanceModif&seance_id={{ seance_id }}&id={{ detail.id }}" method="post" enctype="multipart/form-data">
+        <h2 class="h3 mb-3 font-weight-normal">Modifier un exercice</h2>
+        <div class="form-group">
+            <label for="exerciceId">Exercice</label>
+            <select id="exerciceId" name="exerciceId" class="form-control" required>
+                {% for e in exercices %}
+                    <option value="{{ e.id }}" {% if e.id == detail.exercice_id %}selected{% endif %}>{{ e.designation }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputSets">Nombre de séries</label>
+            <input type="number" id="inputSets" name="inputSets" class="form-control" min="1" max="5" value="{{ detail.sets }}" required>
+        </div>
+        <div class="form-group" id="repsContainer">
+            <label>Répétitions</label>
+            {% for rep in reps %}
+                <input type="number" name="inputReps[]" class="form-control" value="{{ rep.reps }}" required>
+            {% endfor %}
+        </div>
+        <div class="form-group" id="chargeContainer">
+            <label>Charge</label>
+            {% for rep in reps %}
+                <input type="number" name="inputCharge[]" class="form-control" value="{{ rep.weight }}" placeholder="Masse en kg" required>
+            {% endfor %}
+        </div>
+        <div class="form-group" id="rest_timeContainer">
+            <label>Temps de repos</label>
+            {% for rep in reps %}
+                <input type="number" name="inputRest_time[]" class="form-control" value="{{ rep.rest_time }}" placeholder="Temps en secondes" required>
+            {% endfor %}
+        </div>
+        <button class="btn btn-lg btn-block" type="submit" name="btModifier">Modifier</button>
+    </form>
+    <script>
+        document.getElementById('inputSets').addEventListener('input', function() {
+            const repsContainer = document.getElementById('repsContainer');
+            const chargeContainer = document.getElementById('chargeContainer');
+            const rest_timeContainer = document.getElementById('rest_timeContainer');
+            repsContainer.innerHTML = '';
+            chargeContainer.innerHTML = '';
+            rest_timeContainer.innerHTML = '';
+
+            const sets = parseInt(this.value);
+            if (sets > 0 && sets <= 5) {
+                for (let i = 1; i <= sets; i++) {
+                    const repsLabel = document.createElement('label');
+                    repsLabel.setAttribute('for', 'inputReps' + i);
+                    repsLabel.textContent = 'Répétitions pour série ' + i;
+
+                    const repsInput = document.createElement('input');
+                    repsInput.type = 'number';
+                    repsInput.id = 'inputReps' + i;
+                    repsInput.name = 'inputReps[]';
+                    repsInput.className = 'form-control';
+                    repsInput.required = true;
+                    repsInput.value = "{{ reps[i-1].reps }}";
+
+                    repsContainer.appendChild(repsLabel);
+                    repsContainer.appendChild(repsInput);
+
+                    const chargeLabel = document.createElement('label');
+                    chargeLabel.setAttribute('for', 'inputCharge' + i);
+                    chargeLabel.textContent = 'Charge pour la série ' + i;
+
+                    const chargeInput = document.createElement('input');
+                    chargeInput.type = 'number';
+                    chargeInput.id = 'inputCharge' + i;
+                    chargeInput.name = 'inputCharge[]';
+                    chargeInput.className = 'form-control';
+                    chargeInput.required = true;
+                    chargeInput.placeholder = 'Masse en kg';
+                    chargeInput.value = "{{ reps[i-1].weight }}";
+
+                    chargeContainer.appendChild(chargeLabel);
+                    chargeContainer.appendChild(chargeInput);
+
+                    const rest_timeLabel = document.createElement('label');
+                    rest_timeLabel.setAttribute('for', 'inputRest_time' + i);
+                    rest_timeLabel.textContent = 'Temps de repos pour la série ' + i;
+
+                    const rest_timeInput = document.createElement('input');
+                    rest_timeInput.type = 'number';
+                    rest_timeInput.id = 'inputRest_time' + i;
+                    rest_timeInput.name = 'inputRest_time[]';
+                    rest_timeInput.className = 'form-control';
+                    rest_timeInput.required = true;
+                    rest_timeInput.placeholder = 'Temps en secondes';
+                    rest_timeInput.value = "{{ reps[i-1].rest_time }}";
+
+                    rest_timeContainer.appendChild(rest_timeLabel);
+                    rest_timeContainer.appendChild(rest_timeInput);
+                }
+            }
+        });
+
+        // Trigger the input event to pre-fill the form with existing values
+        document.getElementById('inputSets').dispatchEvent(new Event('input'));
+    </script>
+{% endblock %}

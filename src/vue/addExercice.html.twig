@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+    <form class="form-signin" action="index.php?page=AddExercice" method="post" enctype="multipart/form-data">
+        <h2 class="h3 mb-3 font-weight-normal">Ajouter un exercice</h2>
+        <div class="form-group">
+            <label for="inputDesignation">Titre :</label>
+            <input type="text" id="inputDesignation" name="inputDesignation" class="form-control" placeholder="Renseignez un titre" required autofocus>
+        </div>
+        <div class="champ">
+            <label for="inputDescription">Description :</label>
+            <textarea id="inputDescription" name="inputDescription" class="form-control" placeholder="Description de l'exercice" rows="5" required autofocus></textarea>
+        </div>
+        <div class="champ">
+            <label for="inputType">Type :</label>
+            <input type="number" name="idType" id="idType" class="form-control" placeholder="Type d'exercice" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo :</label>
+            <input type="file" name="photo" id="photo" class="form-control"/>
+        </div><br>
+        <button class="btn btn-lg btn-block" type="submit" name="btAjouter">Ajouter</button>
+    </form>
+{% endblock %}

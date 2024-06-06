@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+    <form method="post" enctype="application/x-www-form-urlencoded">
+        <h2 class="h3 mb-3 font-weight-normal">Ajouter un type</h2>
+        <div class="form-group">
+            <label for="inputLibelle">Libelle :</label>
+            <input id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Type d'exercice" required autofocus>
+        </div>
+        <button class="btn btn-lg btn-block" type="submit" name="btAjouter">Ajouter</button>
+    </form>
+{% endblock %}

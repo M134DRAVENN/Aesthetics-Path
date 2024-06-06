@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+    {% if form.valide is defined %}
+        {% if form.valide == true %}
+            <div class="alert alert-success" role="alert">
+                <h2>Inscription reussie</h2>
+                <h2>Voici votre identifiant : {{form.email}}</h2>
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                <h2>Echec de l'inscription</h2>
+                <h2>Erreur : {{form.message}}</h2>
+                <a href="index.php?page=inscrire" class="alert-link">Retourner sur la page d'inscription</a>
+            </div>
+        {% endif %}
+    {% else %}
+        <form action="index.php?page=inscrire" method="post" enctype="application/x-www-form-urlencoded">
+            <h2 class="h3 mb-3 font-weight-normal">Créer un compte</h2>
+            <div class="form-group">
+                <label for="inputEmail">Adresse email:</label>
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputNom">Nom:</label>
+                <input type="nom" id="inputNom" name="inputNom" class="form-control" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputPrenom">Prenom:</label>
+                <input type="prenom" id="inputPrenom" name="inputPrenom" class="form-control" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Mot de passe:</label>
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword2">Confirmer le mot de passe:</label>
+                <input type="password" id="inputPassword2" name="inputPassword2" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-block" type="submit" name="btInscrire">S'inscrire</button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

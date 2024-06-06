@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+
+{% block contenu %}
+{% if form.message is defined %}
+<p>{{ form.message }}</p>
+{% else %}
+    <form class="form-signin" action="index.php?page=AddSeance" method="post" enctype="multipart/form-data">
+        <h2 class="h3 mb-3 font-weight-normal">Ajouter une séance</h2>
+        <div class="form-group">
+            <label for="inputName">Titre :</label>
+            <input type="text" id="inputName" name="inputName" class="form-control" placeholder="Dos - Biceps, Date, ..." required autofocus>
+        </div>
+        <button class="btn btn-lg btn-block" type="submit" name="btAjouter">Ajouter</button>
+    </form>
+{% endif %}
+{% endblock %}

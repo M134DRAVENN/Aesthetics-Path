@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }}{% endblock %}
+
+{% block contenu %}
+
+{% if form.etat is defined %}
+ {% if form.etat == true %}
+ <h2 class="h3 mb-3 font-weight-normal">Suppression reussie</h2>
+ {% else %}
+ <h2 class="alert alert-danger" role="alert">Probleme d'insertion</h2>
+ {% endif %}
+{% endif %}
+
+{% if liste | length >0 %}
+<form class="form-signin" action="index.php?page=Exercice" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id
+                    <th scope="col">Titre
+                    <th scope="col">Description
+                    <th scope="col">idType
+                    <th scope="col">
+                    <th scope="col"></th>
+                    <th scope="col"><button class="btn btn-lg btn-block" type="submit" name="btSupprimer">Suppr</button></th>
+                </tr>
+            </tead>
+            <tbody>
+                {% for p in liste %}
+                    <tr>
+                        <td>{{p.id}}</td>
+                        <td>{{p.designation}}</td>
+                        <td>{{p.description}}</td>
+                        <td>{{p.type}}</td>
+                        <td><a href="index.php?page=exerciceModif&id={{p.id}}">Modifier</a></td>
+                        <td><a href="index.php?page=Exercice&id={{p.id}}">Supprimer</a></td>
+                        <td class="case"><input type="checkbox" name="cocher[]" id="cocher[]" value="{{p.id}}" /></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a id="ajt" href="index.php?page=AddExercice"><button type="button" class="btn btn-lg btn-block">Ajouter</button></a>
+</form>
+
+{% set nb = form.nbpages %}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center m-4 p-4">
+        <li class="page-item {% if form.nopage == 0 %}disabled{% endif %}">
+            <a class="page-link" href="index.php?page=Exercice&nopage={{ 0 }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% for i in 1..nb %}
+        <li class="page-item {% if i ==form.nopage +1 %} active{% endif %}">
+            <a class="page-link" href="index.php?page=Exercice&nopage={{ i-1 }}">{{ i }}<span class="sr- only"></span></a>
+        </li>
+        {% endfor %}
+        <li class="page-item {% if form.nopage == form.nbpages-1 %}disabled{% endif %}">
+            <a class="page-link" href="index.php?page=Exercice&nopage={{ nb-1 }}" aria-label="Next" >
+            <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% else %}
+<h2 class="text-center">Il n'y a pas d'exercice.</h2>
+<a id="ajt" href="index.php?page=AddExercice"><button type="button" class="btn btn-lg btn-block">Ajouter</button></a>
+{% endif %}
+
+<style>
+
+.btn-block {
+    margin-top: -12px;
+    margin-bottom: -12px;
+}
+
+</style>
+
+{% endblock %}

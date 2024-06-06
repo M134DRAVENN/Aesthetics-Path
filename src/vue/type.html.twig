@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }}Liste des types{% endblock %}
+{% block contenu %}
+
+{% if form.etat is defined %}
+ {% if form.etat == true %}
+ <h2 class="h3 mb-3 font-weight-normal">Suppression reussie</h2>
+ {% else %}
+ <h2 class="alert alert-danger" role="alert">Un ou plusieurs exercices de ce type existent encore</h2>
+ {% endif %}
+{% endif %}
+
+<form class="form-signin" action="index.php?page=Type" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id
+                    <th scope="col">libelle
+                    <th scope="col"><a href="index.php?page=AddType">Ajouter</a>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </tead>
+
+            <tbody>
+                {% for t in liste %}
+                    <tr>
+                        <td>{{t.id}}</td>
+                        <td>{{t.libelle}}</td>
+                        <td><a href="index.php?page=typeModif&id={{t.id}}">Modifier</a></td>
+                        <td><a href="index.php?page=Type&id={{t.id}}">Supprimer</a></td>
+                        <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{t.id}}" /></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn btn-lg btn-block" type="submit" name="btSupprimer">Supprimer</button>
+    </div>
+</form>
+{% endblock %}
